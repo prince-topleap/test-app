@@ -2,18 +2,22 @@
 Author: Eli Elad Elrom
 Website: https://EliElrom.com
 License: MIT License
-Component: src/component/TemplateName/TemplateName.tsx
+Component: src/pages/AboutPage/AboutPage.tsx
 */
 
 import React from 'react'
-import './TemplateName.scss'
+import './AboutPage.scss'
+import { RouteComponentProps } from 'react-router-dom'
 
-export default class TemplateName extends React.PureComponent<ITemplateNameProps, ITemplateNameState> {
+export default class AboutPage extends React.PureComponent<IAboutPageProps, IAboutPageState> {
 
-  constructor(props: ITemplateNameProps) {
+  constructor(props: IAboutPageProps) {
     super(props);
     this.state = {
-      // TODO
+      name: this.props.history.location.pathname.substring(
+        1,
+        this.props.history.location.pathname.length
+      ).replace('/', '')
     }
   }
 
@@ -27,40 +31,39 @@ export default class TemplateName extends React.PureComponent<ITemplateNameProps
     return true // or prevent rendering: false
   } */
 
-  static getDerivedStateFromProps:
-    React.GetDerivedStateFromProps<ITemplateNameProps, ITemplateNameState> = (props:ITemplateNameProps, state: ITemplateNameState) => {
+  static getDerivedStateFromProps: React.GetDerivedStateFromProps<IAboutPageProps, IAboutPageState> = (props:IAboutPageProps, state: IAboutPageState) => {
     // invoked right before calling the render method, both on the initial mount and on subsequent updates
     // return an object to update the state, or null to update nothing.
     return null
   }
 
-  public getSnapshotBeforeUpdate(prevProps: ITemplateNameProps, prevState: ITemplateNameState) {
+  public getSnapshotBeforeUpdate(prevProps: IAboutPageProps, prevState: IAboutPageState) {
     // invoked right before the most recently rendered output is committed
     // A snapshot value (or null) should be returned.
     return null
   }
 
-  componentDidUpdate(prevProps: ITemplateNameProps, prevState: ITemplateNameState, snapshot: ITemplateNameSnapshot) {
+  componentDidUpdate(prevProps: IAboutPageProps, prevState: IAboutPageState, snapshot: IAboutPageSnapshot) {
     // invoked immediately after updating occurs. This method is not called for the initial render.
     // will not be invoked if shouldComponentUpdate() returns false.
   }
 
   render() {
     return (
-      <div className="TemplateName">
-        TemplateName
+      <div className="AboutPage">
+        {this.state.name} Component
       </div>)
   }
 }
 
-interface ITemplateNameProps {
+interface IAboutPageProps extends RouteComponentProps<{ name: string }> {
   // TODO
 }
 
-interface ITemplateNameState {
-  // TODO
+interface IAboutPageState {
+  name: string
 }
 
-interface ITemplateNameSnapshot {
+interface IAboutPageSnapshot {
   // TODO
 }

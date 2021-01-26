@@ -6,6 +6,6 @@ const store = configureStore({
   reducer: combineReducers({
     // your reducers goes here
   }),
-})
+}) 
 
-export default store
+export default store 
